@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:funny_tinder_with_friends/widgets/round_icon_button.dart';
+import 'package:fluttery_dart2/layout.dart';
+import 'package:funny_tinder_with_friends/widgets/body/profile_card.dart';
+import 'package:funny_tinder_with_friends/widgets/bottom_bar/bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,48 +18,26 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Image.asset("assets/saneagologo.jpg"),
       ),
-      body: Center(),
-      bottomNavigationBar: _buildBottomBar(),
+      body: _buildCardStack(),
+      bottomNavigationBar: BottomBar(),
     );
   }
 
-  Widget _buildBottomBar() {
-    return BottomAppBar(
-      color: Colors.transparent,
-      elevation: 0.0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            RoundIconButton.small(
-              icon: Icons.refresh,
-              iconColor: Colors.orange,
-              onPressed: () {},
+  Widget _buildCardStack(){
+    return new AnchoredOverlay(
+        showOverlay: true,
+        child: Center(),
+        overlayBuilder: (BuildContext context, Rect anchorBounds, Offset anchor){
+          return CenterAbout(
+            position: anchor,
+            child: Container(
+              width: anchorBounds.width,
+              height: anchorBounds.height,
+              padding: EdgeInsets.all(16.0),
+              child: ProfileCard(),
             ),
-            RoundIconButton.larger(
-              icon: Icons.clear,
-              iconColor: Colors.red,
-              onPressed: () {},
-            ),
-            RoundIconButton.small(
-              icon: Icons.star,
-              iconColor: Colors.blue,
-              onPressed: () {},
-            ),
-            RoundIconButton.larger(
-              icon: Icons.favorite,
-              iconColor: Colors.green,
-              onPressed: () {},
-            ),
-            RoundIconButton.small(
-              icon: Icons.lock,
-              iconColor: Colors.purple,
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+          );
+        }
     );
   }
 }
