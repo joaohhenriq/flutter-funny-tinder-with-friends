@@ -5,14 +5,18 @@ class RoundIconButton extends StatelessWidget {
   final Color iconColor;
   final double size;
   final VoidCallback onPressed;
+  final double iconSize;
 
-  RoundIconButton.larger({this.icon, this.iconColor, this.onPressed})
+  RoundIconButton.extraLarger({this.icon, this.iconColor, this.onPressed, this.iconSize})
+      : size = 70.0;
+
+  RoundIconButton.larger({this.icon, this.iconColor, this.onPressed, this.iconSize})
       : size = 60.0;
 
-  RoundIconButton.small({this.icon, this.iconColor, this.onPressed})
+  RoundIconButton.small({this.icon, this.iconColor, this.onPressed, this.iconSize})
       : size = 50.0;
 
-  RoundIconButton({this.icon, this.iconColor, this.onPressed, this.size});
+  RoundIconButton({this.icon, this.iconColor, this.onPressed, this.size, this.iconSize});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,7 @@ class RoundIconButton extends StatelessWidget {
         child: Icon(
           icon,
           color: iconColor,
+          size: iconSize == null ? 25 : iconSize,
         ),
         onPressed: onPressed,
       ),

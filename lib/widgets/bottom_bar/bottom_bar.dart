@@ -14,28 +14,29 @@ class BottomBar extends StatelessWidget {
           children: <Widget>[
             RoundIconButton.small(
               icon: Icons.refresh,
-              iconColor: Colors.orange,
-              onPressed: () {},
+              iconColor: Colors.blue[100],
+              iconSize: 20,
             ),
             RoundIconButton.larger(
               icon: Icons.clear,
               iconColor: Colors.red,
               onPressed: () {},
             ),
-            RoundIconButton.small(
+            RoundIconButton.extraLarger(
               icon: Icons.star,
-              iconColor: Colors.blue,
+              iconColor: Colors.yellow[700],
               onPressed: () {},
+              iconSize: 40,
             ),
             RoundIconButton.larger(
               icon: Icons.favorite,
-              iconColor: Colors.green,
+              iconColor: Colors.blue[600],
               onPressed: () {},
             ),
             RoundIconButton.small(
               icon: Icons.lock,
-              iconColor: Colors.purple,
-              onPressed: () {},
+              iconColor: Colors.blue[100],
+iconSize: 20,
             ),
           ],
         ),
