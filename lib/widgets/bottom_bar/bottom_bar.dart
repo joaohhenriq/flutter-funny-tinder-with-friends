@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:funny_tinder_with_friends/widgets/bottom_bar/round_icon_button.dart';
+import 'package:funny_tinder_with_friends/matches.dart';
 
 class BottomBar extends StatelessWidget {
+
+  final Match match;
+
+  BottomBar({this.match});
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -20,19 +26,19 @@ class BottomBar extends StatelessWidget {
             RoundIconButton.larger(
               icon: Icons.clear,
               iconColor: Colors.red,
-              onPressed: () {},
+              onPressed: () {match.nope();},
               iconSize: 30,
             ),
             RoundIconButton.small(
               icon: Icons.star,
               iconColor: Colors.blue,
-              onPressed: () {},
+              onPressed: () {match.superLike();},
               iconSize: 30,
             ),
             RoundIconButton.larger(
               icon: Icons.favorite,
               iconColor: Colors.green,
-              onPressed: () {},
+              onPressed: () {match.like();},
               iconSize: 30,
             ),
             RoundIconButton.small(

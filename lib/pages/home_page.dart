@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:funny_tinder_with_friends/widgets/body/draggable_card.dart';
 import 'package:funny_tinder_with_friends/widgets/bottom_bar/bottom_bar.dart';
+import 'package:funny_tinder_with_friends/matches.dart';
 
 import '../app_background.dart';
 
@@ -10,6 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Match match = new Match();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,8 +35,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.blue[800]
             ),),
           ),
-          body: DraggableCard(),
-          bottomNavigationBar: BottomBar(),
+          body: DraggableCard(match: match),
+          bottomNavigationBar: BottomBar(match: match,),
         ),
       ],
     );

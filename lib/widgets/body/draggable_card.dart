@@ -3,14 +3,22 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fluttery_dart2/layout.dart';
 import 'package:funny_tinder_with_friends/widgets/body/profile_card.dart';
+import 'package:funny_tinder_with_friends/matches.dart';
 
 class DraggableCard extends StatefulWidget {
+
+  final Match match;
+
+  DraggableCard({this.match});
+
   @override
   _DraggableCardState createState() => _DraggableCardState();
 }
 
 class _DraggableCardState extends State<DraggableCard>
     with TickerProviderStateMixin {
+  Decision decision;
+  GlobalKey profileCardKey = new GlobalKey(debugLabel: 'profile_card_key');
   Offset cardOffset = Offset(0.0, 0.0);
   Offset dragStart;
   Offset dragPosition;
@@ -52,13 +60,30 @@ class _DraggableCardState extends State<DraggableCard>
           slideOutTween = null;
           dragPosition = null;
           cardOffset = Offset(0.0, 0.0);
+
+          widget.match.reset();
         });
       }
     });
+
+    widget.match.addListener(_onMatchChange);
+    decision = widget.match.decision;
+  }
+
+
+  @override
+  void didUpdateWidget(DraggableCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if(widget.match != oldWidget.match){
+      oldWidget.match.removeListener(_onMatchChange);
+      widget.match.addListener(_onMatchChange);
+    }
   }
 
   @override
   void dispose() {
+    widget.match.removeListener(_onMatchChange);
     slideBackAnimation.dispose();
     super.dispose();
   }
@@ -78,6 +103,7 @@ class _DraggableCardState extends State<DraggableCard>
                     ..rotateZ(_rotation(anchorBounds)),
               origin: _rotationOrigin(anchorBounds),
               child: Container(
+                key: profileCardKey,
                 width: anchorBounds.width,
                 height: anchorBounds.height,
                 padding: EdgeInsets.all(16.0),
@@ -145,5 +171,53 @@ class _DraggableCardState extends State<DraggableCard>
     } else {
       return Offset(0.0, 0.0);
     }
+  }
+
+  void _onMatchChange(){
+    if(widget.match.decision != decision){
+      switch(widget.match.decision){
+        case Decision.NOPE:
+          _slideLeft();
+          break;
+        case Decision.LIKE:
+          _slideRight();
+          break;
+        case Decision.SUPERLIKE:
+          _slideUp();
+          break;
+        default:
+          break;
+      }
+    }
+
+    decision = widget.match.decision;
+  }
+
+  void _slideLeft(){
+    final screenWidth = context.size.width;
+    dragStart = _chooseRandomDragStart();
+    slideOutTween = Tween(begin: Offset(0, 0), end: Offset(-2 * screenWidth, 0));
+    slideOutAnimation.forward(from: 0);
+  }
+
+  void _slideRight(){
+    final screenWidth = context.size.width;
+    dragStart = _chooseRandomDragStart();
+    slideOutTween = Tween(begin: Offset(0, 0), end: Offset(2 * screenWidth, 0));
+    slideOutAnimation.forward(from: 0);
+  }
+
+  void _slideUp(){
+    final screenHeight = context.size.height;
+    dragStart = _chooseRandomDragStart();
+    slideOutTween = Tween(begin: Offset(0, 0), end: Offset(0, -2 * screenHeight));
+    slideOutAnimation.forward(from: 0);
+  }
+
+  Offset _chooseRandomDragStart(){
+    final cardContext= profileCardKey.currentContext;
+    final cardTopLeft = (cardContext.findRenderObject() as RenderBox).localToGlobal(Offset(0, 0));
+    final dragStartY = cardContext.size.height * (new Random().nextDouble() < 0.5 ? 0.25 : 0.75) + cardTopLeft.dy;
+    return Offset(cardContext.size.width / 2 + cardTopLeft.dx, dragStartY);
   }
 }
