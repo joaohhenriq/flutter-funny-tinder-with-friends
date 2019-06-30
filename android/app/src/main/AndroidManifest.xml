@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="funny_tinder_with_friends"
+        android:label="funny_tin"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

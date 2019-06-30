@@ -30,7 +30,7 @@ class SelectedPhotoIndicator extends StatelessWidget {
   Widget _buildInactiveIndicator() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Container(
           height: 3.0,
           decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class SelectedPhotoIndicator extends StatelessWidget {
   Widget _buildActiveIndicator() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Container(
           height: 3.0,
           decoration: BoxDecoration(

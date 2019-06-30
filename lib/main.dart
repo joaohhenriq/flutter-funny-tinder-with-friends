@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:funny_tinder_with_friends/matches.dart';
 import 'package:funny_tinder_with_friends/pages/home_page.dart';
+
+import 'model/profile_model.dart';
 
 void main() => runApp(MyApp());
 
