@@ -20,7 +20,43 @@ final List<Profile> demoProfiles = [
         "assets/coro2.jpeg",
       ],
       name: "Coró",
-      bio: "Treinee"
+      bio: "Scroll Master"
+  ),
+  new Profile(
+      photos: [
+        "assets/maurim.jpeg",
+        "assets/maurim2.jpeg",
+      ],
+      name: "Maurim",
+      bio: "Flutter Master"
+  ),
+  new Profile(
+      photos: [
+        "assets/robson.jpeg",
+      ],
+      name: "Robson",
+      bio: "Developer"
+  ),
+  new Profile(
+      photos: [
+        "assets/rogerio.jpeg",
+      ],
+      name: "Rogério",
+      bio: "Water box"
+  ),
+  new Profile(
+      photos: [
+        "assets/sergio.jpeg",
+      ],
+      name: "Sérgio",
+      bio: "Incredible rosca"
+  ),
+  new Profile(
+      photos: [
+        "assets/tonhao.jpeg",
+      ],
+      name: "Tonhão",
+      bio: "Opa!"
   ),
 ];
 
