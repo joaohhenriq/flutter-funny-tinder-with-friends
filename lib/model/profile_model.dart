@@ -4,7 +4,7 @@ final List<Profile> demoProfiles = [
       "assets/joao.jpeg",
     ],
     name: "João",
-    bio: "Software Engineer"
+    bio: "Big boss"
   ),
   new Profile(
       photos: [
@@ -35,7 +35,7 @@ final List<Profile> demoProfiles = [
         "assets/robson.jpeg",
       ],
       name: "Robson",
-      bio: "Developer"
+      bio: "K K K J"
   ),
   new Profile(
       photos: [
@@ -57,6 +57,13 @@ final List<Profile> demoProfiles = [
       ],
       name: "Tonhão",
       bio: "Opa!"
+  ),
+  new Profile(
+      photos: [
+        "assets/estagiario.jpeg",
+      ],
+      name: "Estagiário",
+      bio: "Young stupid padawan"
   ),
 ];
 
